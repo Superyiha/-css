@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>demo1</title>
+        <!-- 设置视口宽度，确保页面在不同设备上自适应 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            /* 设置页面背景颜色 */
+            body {
+                background-color: #282c44;
+            }
+            /* 创建一个绝对居中的容器框架 */
+            .frame {
+                position: absolute;
+                top: 50%; /* 垂直居中 */
+                left: 50%; /* 水平居中 */
+                width: 400px;
+                height: 400px;
+                margin-top: -200px; /* 宽度/高度的一半，用于完全居中 */
+                margin-left: -200px; /* 宽度/高度的一半，用于完全居中 */
+                border-radius: 2px;
+                box-shadow: 1px 2px 10px 0px rgba(0,0,0,0.2); /* 阴影效果 */
+                background: #0a1421; /* 背景颜色 */
+            }
+            /* 用于确保内部内容绝对居中 */
+            .center {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%); /* 水平和垂直居中 */
+            }
+            /* 心跳动画的关键帧 */
+            @keyframes beat {
+                0% {
+                    transform: scale(1); /* 初始状态 */
+                }
+                35% {
+                    transform: scale(1.2); /* 缩放变大 */
+                }
+            }
+            /* 心形的样式 */
+            .heart {
+                width: 70px;
+                height: 70px;
+                background: #ff1736; /* 红色背景 */
+                position: relative;
+                rotate: -45deg; /* 旋转45度，使其成为心形的基础形状 */
+                box-shadow: -17px 17px 80px #ff1736; /* 阴影效果 */
+                animation: beat 0.9s ease-in-out infinite; /* 心跳动画 */
+            }
+            /* 创建心形的上两个圆 */
+            .heart::before,
+            .heart::after {
+                content: "";
+                width: 70px;
+                height: 70px;
+                background: #ff1736; /* 红色背景 */
+                border-radius: 50%; /* 圆形 */
+                position: absolute;
+            }
+            /* 心形左上方的圆 */
+            .heart::before {
+                top: -50%;
+                box-shadow: -12px -20px 80px #ff1736; /* 阴影效果 */
+            }
+            /* 心形右上方的圆 */
+            .heart::after {
+                left: 50%;
+                box-shadow: 20px 12px 80px #ff1736; /* 阴影效果 */
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 外部框架，中心对齐 -->
+        <div class="frame">
+            <!-- 内部容器，用于居中对齐 -->
+            <div class="center">
+                <!-- 心形元素 -->
+                <div class="heart"></div>
+            </div>
+        </div>
+    </body>
+</html>
