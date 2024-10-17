@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>demo2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <style>
+      /* 设置页面的背景颜色 */
+      body {
+        background-color: #282c44;
+      }
+
+      /* 设置一个中心的框架，保持内容居中 */
+      .frame {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 400px;
+        height: 400px;
+        margin-top: -200px; /* 负的 margin 使框架在垂直方向居中 */
+        margin-left: -200px; /* 负的 margin 使框架在水平方向居中 */
+        border-radius: 2px;
+        box-shadow: 1px 2px 10px 0px rgba(0, 0, 0, 0.2); /* 设置阴影效果 */
+        background: #2c2e2e; /* 框架背景颜色 */
+        overflow: hidden; /* 防止内容溢出框架 */
+      }
+
+      /* 设置 Pac-Man 的样式 */
+      .pacman {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        top: 150px; /* 设置 Pac-Man 在框架中的垂直位置 */
+        left: 150px; /* 设置 Pac-Man 在框架中的水平位置 */
+        fill: none;
+        stroke: #f4d146; /* Pac-Man 的描边颜色 */
+        stroke-width: 50px; /* Pac-Man 的描边宽度 */
+        stroke-linecap: butt; /* 端点样式 */
+        stroke-dasharray: 157; /* 控制虚线长度，形成 Pac-Man 的嘴 */
+        animation: mouth 0.7s ease-in-out infinite; /* 设置吃豆子的动画效果 */
+      }
+
+      /* 定义 Pac-Man 的嘴巴动画 */
+      @keyframes mouth {
+        0%,
+        100% {
+          stroke-dashoffset: 0; /* 初始时嘴巴完全张开 */
+          transform: rotate(0deg) translate3d(0, 0, 0); /* 初始时不旋转 */
+        }
+        50% {
+          stroke-dashoffset: 39; /* 中间时嘴巴闭合到一半 */
+          transform: rotate(45deg); /* 动画中间时旋转 45 度 */
+        }
+      }
+
+      /* 定义 Pac-Man 眼睛的样式 */
+      .eye {
+        position: absolute;
+        width: 20px;
+        height: 12px;
+        top: 167px; /* 眼睛的垂直位置 */
+        left: 204px; /* 眼睛的水平位置 */
+        fill: #2c2e2e; /* 眼睛的颜色（与背景相同以隐藏） */
+        animation: eye 0.7s ease-in-out infinite; /* 眼睛的动画效果，与嘴巴同步 */
+      }
+
+      /* 定义眼睛的动画，随着嘴巴的张合轻微移动 */
+      @keyframes eye {
+        0%,
+        100% {
+          transform: translate3d(0, 0, 0); /* 眼睛在初始和结束位置 */
+        }
+        50% {
+          transform: translate3d(-6px, -3px, 0); /* 在动画中间轻微移动 */
+        }
+      }
+
+      /* 设置 Pac-Man 吃的豆子的样式 */
+      .dots {
+        position: absolute;
+        width: 240px;
+        height: 14px;
+        top: 193px; /* 豆子的垂直位置 */
+        left: 180px; /* 豆子的水平位置 */
+        stroke: #f4d146; /* 豆子的颜色 */
+        stroke-width: 14px; /* 豆子的描边宽度 */
+        stroke-dasharray: 0 50px; /* 创建豆子的虚线样式，长度为 50px */
+        stroke-linecap: round; /* 圆形的端点样式，豆子像是圆点 */
+        stroke-dashoffset: 14; /* 初始的偏移量 */
+        animation: point 1.2s ease-in-out infinite; /* 豆子的动画效果 */
+      }
+
+      /* 定义豆子移动的动画 */
+      @keyframes point {
+        0% {
+          stroke-dashoffset: 14; /* 初始时豆子不移动 */
+          transform: translate3d(0, 0, 0); /* 豆子初始位置 */
+        }
+        100% {
+          stroke-dashoffset: 64; /* 最终豆子移动 64px */
+        }
+      }
+    </style>
+  </head>
+  
+  <body>
+    <!-- 定义框架容器 -->
+    <div class="frame">
+      <!-- 定义 Pac-Man 的形状 -->
+      <svg class="pacman">
+        <circle r="25" cx="50" cy="50" /> <!-- 使用一个圆形代表 Pac-Man -->
+      </svg>
+
+      <!-- 定义 Pac-Man 的眼睛 -->
+      <svg class="eye">
+        <circle r="6" cx="6" cy="6" /> <!-- 使用一个小圆形代表眼睛 -->
+      </svg>
+
+      <!-- 定义 Pac-Man 吃的豆子 -->
+      <svg class="dots">
+        <polyline points="0,7 240,7"></polyline> <!-- 使用折线来模拟豆子 -->
+      </svg>
+    </div>
+  </body>
+</html>
